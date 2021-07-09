@@ -8,6 +8,7 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Database Config
 const dbURI = process.env.DB_URL;
 mongoose
   .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -19,6 +20,8 @@ mongoose
 
 // Logger
 app.use(morgan("dev"));
+
+// Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
