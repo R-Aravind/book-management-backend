@@ -1,12 +1,12 @@
 const Category = require("./category.model");
 
 // TODO: return all categories
-const getAll = (req, res) => {};
+const getAllCategories = (req, res) => {};
 
 // TODO: create new category
-const create = (req, res) => {};
+const createCategory = (req, res) => {};
 
 module.exports = {
-  getAll,
-  create,
+  getAllCategories,
+  createCategory,
 };
