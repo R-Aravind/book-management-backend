@@ -17,7 +17,24 @@ const uploadImage = async (bucket, destination, image, contentType) => {
   return file.publicUrl();
 };
 
+const uploadMultiple = async (bucket, id, files) => {
+  var fileLinks = [];
+
+  for (var i = 0; i < files.length; i++) {
+    var url = await uploadImage(
+      bucket,
+      `${id}/${i}-${files[i].originalname}`,
+      files[i].buffer,
+      files[i].mimetype
+    );
+    fileLinks.push(url);
+  }
+
+  return fileLinks;
+};
+
 module.exports = {
   initBucket,
   uploadImage,
+  uploadMultiple,
 };
