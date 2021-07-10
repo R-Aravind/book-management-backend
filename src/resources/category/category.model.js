@@ -3,7 +3,11 @@ const Schema = mongoose.Schema;
 
 const categorySchema = new Schema(
   {
-    category_name: String,
+    category_name: {
+      type: String,
+      unique: true,
+      required: true,
+    },
     products_count: {
       type: Number,
       default: 0,

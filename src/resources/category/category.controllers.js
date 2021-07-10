@@ -1,10 +1,18 @@
 const Category = require("./category.model");
 
-// TODO: return all categories
-const getAllCategories = (req, res) => {};
+// get all categories
+const getAllCategories = async (req, res) => {
+  const categories = await Category.find();
+  res.json(categories);
+};
 
-// TODO: create new category
-const createCategory = (req, res) => {};
+// creates new category
+const createCategory = (req, res) => {
+  const category = new Category();
+  category.category_name = req.body.name;
+  category.save();
+  res.json(category);
+};
 
 module.exports = {
   getAllCategories,
