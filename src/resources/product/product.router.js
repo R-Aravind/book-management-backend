@@ -16,11 +16,7 @@ productRouter.post(
   productController.createProduct
 );
 
-productRouter.put(
-  "/:id",
-  multer.array("images"),
-  productController.updateProduct
-);
+productRouter.put("/", multer.array("images"), productController.updateProduct);
 
 productRouter.delete("/", multer.fields([]), productController.deleteProduct);
 

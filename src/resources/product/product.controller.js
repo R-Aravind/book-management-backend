@@ -1,6 +1,10 @@
 const Product = require("./product.model");
 const Category = require("../category/category.model");
-const { initBucket, uploadMultiple } = require("../../util/storage");
+const {
+  initBucket,
+  uploadMultiple,
+  deleteImages,
+} = require("../../util/storage");
 
 var bucket = initBucket();
 
@@ -54,6 +58,7 @@ const deleteProduct = async (req, res) => {
   await Category.findByIdAndUpdate(product.item_category, {
     $inc: { products_count: -1 },
   });
+  deleteImages(bucket, `${product.id}`);
   res.json({ message: "product is deleted" });
 };
 
