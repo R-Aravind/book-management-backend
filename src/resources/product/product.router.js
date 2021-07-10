@@ -11,12 +11,12 @@ const productRouter = express.Router();
 productRouter.get("/", productController.getAllProducts);
 productRouter.post(
   "/",
-  multer.array("images"),
+  multer.array("item_images"),
   productController.createProduct
 );
 productRouter.put(
   "/:id",
-  multer.array("images"),
+  multer.array("item_images"),
   productController.updateProduct
 );
 productRouter.delete("/:id", productController.deleteProduct);
