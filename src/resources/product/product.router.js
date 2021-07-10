@@ -9,17 +9,25 @@ const multer = Multer({
 const productRouter = express.Router();
 
 productRouter.get("/", productController.getAllProducts);
+
 productRouter.post(
   "/",
-  multer.array("item_images"),
+  multer.array("images"),
   productController.createProduct
 );
+
 productRouter.put(
   "/:id",
-  multer.array("item_images"),
+  multer.array("images"),
   productController.updateProduct
 );
-productRouter.delete("/:id", productController.deleteProduct);
-productRouter.get("/categories/:id", productController.getByCategory);
+
+productRouter.delete("/", multer.fields([]), productController.deleteProduct);
+
+productRouter.post(
+  "/categories",
+  multer.fields([]),
+  productController.getByCategory
+);
 
 module.exports = productRouter;
