@@ -3,6 +3,7 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 
 const categoryRouter = require("./resources/category/category.router");
+const productRouter = require("./resources/product/product.router");
 
 require("dotenv").config();
 
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 // Routes
+app.use("/api/product/", productRouter);
 app.use("/api/category/", categoryRouter);
 
 mongoose
