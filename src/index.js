@@ -21,6 +21,10 @@ app.use(morgan("dev"));
 app.use("/api/product/", productRouter);
 app.use("/api/category/", categoryRouter);
 
+app.use((req, res) => {
+  res.status(404).json({ message: "Not Found" });
+});
+
 mongoose
   .connect(process.env.DB_URL, {
     useNewUrlParser: true,
