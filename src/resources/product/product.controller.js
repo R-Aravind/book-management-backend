@@ -16,7 +16,7 @@ const getAllProducts = async (req, res) => {
 
 // returns products of a category
 const getByCategory = async (req, res) => {
-  const category = await Category.findOne({ category_name: req.body.category });
+  const category = await Category.findOne({ category_name: req.params.id });
   const products = await Product.find({ item_category: category.id });
   res.json(products);
 };
