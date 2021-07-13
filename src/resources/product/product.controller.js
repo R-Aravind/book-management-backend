@@ -33,6 +33,7 @@ const createProduct = async (req, res) => {
   product.item_description = req.body.description;
   product.item_images = fileLinks;
   product.item_category = category.id;
+  product.item_category_name = category.category_name;
   product.from_inventory = req.body.from_inventory;
   product.unit = req.body.unit;
   product.opening_stock = req.body.opening_stock;
@@ -71,6 +72,7 @@ const updateProduct = async (req, res) => {
   product.item_description = req.body.description;
   product.item_images = fileLinks;
   product.item_category = category.id;
+  product.item_category_name = category.category_name;
   product.from_inventory = req.body.from_inventory;
   product.unit = req.body.unit;
   product.opening_stock = req.body.opening_stock;
