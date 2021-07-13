@@ -11,6 +11,14 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Middlewares
+var allowCrossDomain = function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  next();
+};
+
+app.use(allowCrossDomain);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -21,8 +29,14 @@ app.use(morgan("dev"));
 app.use("/api/product/", productRouter);
 app.use("/api/category/", categoryRouter);
 
-app.use((req, res) => {
-  res.status(404).json({ message: "Not Found" });
+app.use((req, res, next) => {
+  const error = new Error("Not Found");
+  error.status = 404;
+  next(error);
+});
+
+app.use((error, req, res, next) => {
+  res.status(error.status || 500).json({ error: { message: error.message } });
 });
 
 mongoose

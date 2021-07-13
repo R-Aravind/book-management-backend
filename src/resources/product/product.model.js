@@ -18,6 +18,7 @@ const productSchema = new Schema(
       required: true,
       ref: "category",
     },
+    item_category_name: String,
     from_inventory: {
       type: Boolean,
       default: false,

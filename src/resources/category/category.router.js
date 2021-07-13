@@ -10,5 +10,10 @@ const categoryRouter = express.Router();
 
 categoryRouter.get("/", categoryController.getAllCategories);
 categoryRouter.post("/", multer.fields([]), categoryController.createCategory);
+categoryRouter.delete(
+  "/",
+  multer.fields([]),
+  categoryController.deleteCategory
+);
 
 module.exports = categoryRouter;
