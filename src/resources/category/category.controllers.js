@@ -26,7 +26,9 @@ const createCategory = (req, res, next) => {
 
 const deleteCategory = async (req, res, next) => {
   try {
-    product = await Category.findOneAndDelete({ name: req.body.name });
+    category = await Category.findOneAndDelete({
+      category_name: req.body.name,
+    });
     res.json({ message: "category is deleted" });
   } catch (err) {
     next(err);
