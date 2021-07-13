@@ -29,8 +29,14 @@ app.use(morgan("dev"));
 app.use("/api/product/", productRouter);
 app.use("/api/category/", categoryRouter);
 
-app.use((req, res) => {
-  res.status(404).json({ message: "Not Found" });
+app.use((req, res, next) => {
+  const error = new Error("Not Found");
+  error.status = 404;
+  next(error);
+});
+
+app.use((error, req, res, next) => {
+  res.status(error.status || 500).json({ error: { message: error.message } });
 });
 
 mongoose
