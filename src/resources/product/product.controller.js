@@ -52,6 +52,8 @@ const createProduct = async (req, res, next) => {
     product.pricing_purchase_price = req.body.purchase_price;
     product.gst_tax_rate = req.body.gst_tax_rate;
     product.inclusive_of_tax = req.body.inclusive_of_tax;
+    product.low_stock_warning = req.body.low_stock_warning;
+
     product
       .save()
       .then(() => res.json(product))
@@ -100,6 +102,8 @@ const updateProduct = async (req, res, next) => {
     product.pricing_purchase_price = req.body.purchase_price;
     product.gst_tax_rate = req.body.gst_tax_rate;
     product.inclusive_of_tax = req.body.inclusive_of_tax;
+    product.low_stock_warning = req.body.low_stock_warning;
+
     product
       .save()
       .then(() => res.json(product))
