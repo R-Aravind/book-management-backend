@@ -33,7 +33,10 @@ const getByCategory = async (req, res, next) => {
 const createProduct = async (req, res, next) => {
   try {
     const product = new Product();
-    const fileLinks = await uploadMultiple(bucket, product.id, req.files);
+    var fileLinks = [];
+    if (req.files) {
+      fileLinks = await uploadMultiple(bucket, product.id, req.files);
+    }
     const category = await Category.findOne({
       category_name: req.body.category,
     });
@@ -73,7 +76,10 @@ const createProduct = async (req, res, next) => {
 const updateProduct = async (req, res, next) => {
   try {
     deleteImages(bucket, `${req.body.id}`);
-    const fileLinks = await uploadMultiple(bucket, req.body.id, req.files);
+    var fileLinks = [];
+    if (req.files) {
+      fileLinks = await uploadMultiple(bucket, req.body.id, req.files);
+    }
     const category = await Category.findOne({
       category_name: req.body.category,
     });
