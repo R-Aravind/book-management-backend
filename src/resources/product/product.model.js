@@ -30,6 +30,7 @@ const productSchema = new Schema(
     },
     opening_stock: Number,
     as_of_date: Date,
+    low_stock_warning: Boolean,
 
     pricing_purchase_price: Number,
     gst_tax_rate: {
